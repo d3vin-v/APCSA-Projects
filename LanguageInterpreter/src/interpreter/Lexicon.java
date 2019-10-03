@@ -22,7 +22,7 @@ public class Lexicon {
         list[14] = "Daentrkeningingy aentumningy. Aingy puentblicingy, coentnstructoringy ruentnsingy. Whientlstingy waenttchingingy theent claentssingy.";
         list[15] = "Daentrkingy deentclivityingy. Aingy sientngleingy, coentnstructoringy ruentnsingy. Beenttrayedingy byingy theent claentssingy.";
     }
-
+    
     public String getSample(int n) {
         return list[n];
     }
