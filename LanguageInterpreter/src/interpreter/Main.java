@@ -1,32 +1,72 @@
 package interpreter;
 
 public class Main {
+	public static void main(String[] args) {
+		Lexicon lex = new Lexicon();
 
-  public static void main(String[] args) {
-    Lexicon lex = new Lexicon();
+		//String newWord = lex.translate("food");
+		//System.out.println(newWord);
 
-    String newWord = lex.translate("food");
-    System.out.println(newWord);
+		//String word = decode("Hoenttingy.");
+		//System.out.println(word);
+		
+		String message = decodeMessage("Daentrkingy deentclivityingy. Aingy sientngleingy, coentnstructoringy ruentnsingy. Beenttrayedingy byingy theent claentssingy.");
+		System.out.println(message);
+	}
 
-  }
-
-  /**
-   * This method decodes a single word.
-   * 
-   * @param word The single word to be decoded.
-   */
-  public static String decode(String word)
-  {
-    return "";
-  }
+	/*
+	 * This method decodes a single word.
+	 * 
+	 * @param word The single word to be decoded.
+	 */
+	public static String decode(String word) {
+		String dWord = "";
+		for(int i = 0; i < word.length(); i++) {
+			if(word.charAt(i) == 'e' && word.charAt(i + 1) == 'n' && word.charAt(i + 2) == 't') {
+				i += 2;
+			}else if(word.charAt(i) == 'i' && word.charAt(i + 1) == 'n' && word.charAt(i + 2) == 'g' && word.charAt(i + 3) == 'y') {
+				if(word.charAt(word.length() - 1) == '.' || word.charAt(word.length() - 1) == ',') {
+					dWord += word.charAt(word.length() - 1);
+				}
+				return dWord;
+			}else if(i == word.length()) {
+				return dWord;
+			}else {
+				dWord += word.charAt(i);
+			}
+		}
+		return dWord;
+	}
 
   /**
    * This method should not have code copy/pasted from the decode method.
    * 
    * @param message The sentence (multiple words) to be decoded.
    */
-  public static String decodeMessage(String message)
-  {
-    return "";
-  }
+	public static String decodeMessage(String message) {
+		String dMessage = "";
+		int lastSpace = 0;
+		for(int i = 0; i < message.length(); i++) {
+			if(message.charAt(i + 1) == ' ' && lastSpace == 0) { // first word
+				System.out.print("1 ");
+				String messageWord = message.substring(0, i + 1);
+				dMessage += decode(messageWord) + ' ';
+				lastSpace = i + 2;
+				System.out.println(dMessage);
+			}else if(message.charAt(i + 1) == ' ' && lastSpace > 0) {
+				System.out.print("2 ");
+				String messageWord = message.substring(lastSpace, i + 1);
+				dMessage += decode(messageWord) + ' ';
+				lastSpace = i + 2;
+				System.out.println(dMessage);
+			}else if(message.charAt(i) == message.charAt(message.length() - 1)) { // last word
+				System.out.print("3 ");
+				String messageWord = message.substring(lastSpace, i);
+				dMessage += decode(messageWord) + message.charAt(i);
+				System.out.println(dMessage);
+				return dMessage;
+			}
+		}
+		return dMessage;
+	}
 }
