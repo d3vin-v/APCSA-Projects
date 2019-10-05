@@ -59,7 +59,7 @@ public class Main {
 				dMessage += decode(messageWord) + ' ';
 				lastSpace = i + 2;
 				System.out.println(dMessage);
-			}else if(message.charAt(i) == message.charAt(message.length() - 1)) { // last word
+			}else if(message.charAt(i) == message.charAt(message.length() - 1)) { // last word 
 				System.out.print("3 ");
 				String messageWord = message.substring(lastSpace, i);
 				dMessage += decode(messageWord) + message.charAt(i);
